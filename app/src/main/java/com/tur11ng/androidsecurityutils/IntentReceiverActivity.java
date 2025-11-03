@@ -5,7 +5,7 @@ import android.os.Bundle;
 import androidx.activity.ComponentActivity;
 import androidx.annotation.NonNull;
 
-public class IntentReceiverLoggerActivity extends ComponentActivity {
+public class IntentReceiverActivity extends ComponentActivity {
     private static final String TAG = "IntentReceiverActivity";
 
     @Override

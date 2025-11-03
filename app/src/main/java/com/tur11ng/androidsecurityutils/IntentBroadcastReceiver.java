@@ -5,8 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 
 public class IntentBroadcastReceiver extends BroadcastReceiver {
+
+    private static final String TAG = "IntentBroadcastReceiver";
+
     @Override
     public void onReceive(Context context, Intent intent) {
-        IntentLogger.log("IntentBroadcastReceiver", intent);
+        BroadcastReceiverLogger.log("IntentBroadcastReceiver", this, context, intent);
     }
 }

@@ -34,8 +34,10 @@ public class MainActivity extends AppCompatActivity {
 //        setContentView(R.layout.activity_main);
 //
 //        Intent intent = new Intent();
-//        intent.setComponent(new ComponentName("io.hextree.attacksurface", "io.hextree.attacksurface.activities.Flag22Activity"));
-//
+//        intent.setComponent(new ComponentName(
+//                "INTENT_TARGET_APPLICATION_PACKAGE",
+//                "INTENT_TARGET_APPLICATION_CLASS"
+//        ));
 //        PendingIntent pendingIntent = PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_MUTABLE);
 //        intent.putExtra("PENDING",pendingIntent);
 //
@@ -52,9 +54,12 @@ public class MainActivity extends AppCompatActivity {
 //        });
 
 //        Intent intent = new Intent();
-//        intent.setAction("io.hextree.attacksurface.receivers.Flag16Receiver");
+//        intent.setAction("INTENT_ACTION");
 //        intent.putExtra("flag", "give-flag-16");
-//        intent.setClassName("io.hextree.attacksurface", "io.hextree.attacksurface.receivers.Flag16Receiver");
+//        intent.setComponent(new ComponentName(
+//                "INTENT_TARGET_APPLICATION_PACKAGE",
+//                "INTENT_TARGET_APPLICATION_CLASS"
+//        ));
 //        intent.addFlags(Intent.FLAG_DEBUG_LOG_RESOLUTION);
 //        sendBroadcast(intent);
 //    }
@@ -107,8 +112,7 @@ public class MainActivity extends AppCompatActivity {
 //        // Fast way to create an intent with a specific action and the Debug flags. You will need to check the LOGCAT for this.
 //        Intent intent = new Intent("INTENT_ACTION");
 //        intent.setFlags(FLAG_DEBUG_LOG_RESOLUTION);
-
-//        IntentFilter intentFilter = new IntentFilter("io.hextree.broadcast.FREE_FLAG");
+//        IntentFilter intentFilter = new IntentFilter("INTENT_ACTION");
 //        intentFilter.setPriority(10);
 //
 //        BroadcastReceiver highjackReceiver = new HighjackReceiver();
@@ -120,10 +124,9 @@ public class MainActivity extends AppCompatActivity {
 
 //        Intent intent = new Intent();
 //        intent.setComponent(new ComponentName(
-//                "io.hextree.attacksurface",
-//                "io.hextree.attacksurface.receivers.Flag17Receiver"
-//        ));//        intent.putExtra("flag", "give-flag-17");
-//        intent.setComponent(new ComponentName("io.hextree.attacksurface", "io.hextree.attacksurface.receivers.Flag17Receiver"));
+//                "INTENT_TARGET_APPLICATION_PACKAGE",
+//                "INTENT_TARGET_APPLICATION_CLASS"
+//        ));
 //        sendOrderedBroadcast(intent, null, new BroadcastReceiver() {
 //            @Override
 //            public void onReceive(Context context, Intent intent) {
@@ -138,22 +141,22 @@ public class MainActivity extends AppCompatActivity {
 //        intent.setAction("ActionKey");
 //        intent.putExtra("ExtraKey", true);
 //        Bundle bundle = new Bundle();
-//        bundle.putInt("BundleExtraKey", 1094795585);
-//        bundle.putInt("BundleExtraKey1", 322376503);
+//        bundle.putInt("BundleExtraKey", 1234);
+//        bundle.putInt("BundleExtraKey1", 1234);
 //        intent.putExtra("BundleKey", bundle);
 //        sendBroadcast(intent);
 
 //        // Send explicit broadcast
 //        Intent intent = new Intent();
 //        intent.setComponent(new ComponentName(
-//                "io.hextree.attacksurface",
-//                "io.hextree.attacksurface.receivers.Flag19Widget"
+//                "INTENT_TARGET_APPLICATION_PACKAGE",
+//                "INTENT_TARGET_APPLICATION_CLASS"
 //        ));
 //        intent.setAction("ActionKey");
 //        intent.putExtra("ExtraKey", true);
 //        Bundle bundle = new Bundle();
-//        bundle.putInt("BundleExtraKey", 1094795585);
-//        bundle.putInt("BundleExtraKey1", 322376503);
+//        bundle.putInt("BundleExtraKey", 1234);
+//        bundle.putInt("BundleExtraKey1", 1234);
 //        intent.putExtra("BundleKey", bundle);
 //        sendBroadcast(intent);
 
@@ -190,5 +193,52 @@ public class MainActivity extends AppCompatActivity {
 //                intentFilter,
 //                RECEIVER_EXPORTED
 //        );
+
+//        // Create and send a PendingIntent that delivers a nested PendingIntent.
+//        // Every PendingIntent must contain an intent.
+//        // The PendingIntent is like an envelope that you can give to another app to perform
+//        // the action you specified in the intent at a later time on your behalf.
+//        Intent intent = new Intent(this, MainActivity.class);
+//        PendingIntent pendingIntent = PendingIntent.getActivity(
+//                this,                // Context: your app context
+//                0,                          // requestCode: distinguishes multiple PendingIntents
+//                intent,                     // intent: the action to perform later
+//                FLAG_IMMUTABLE              // flags: controls mutability and behavior
+//        );
+//
+//        Intent intent1 = new Intent();
+//        intent1.putExtra("PENDING", pendingIntent);
+//        intent1.setComponent(new ComponentName(
+//                "INTENT_TARGET_APPLICATION_PACKAGE",
+//                "INTENT_TARGET_APPLICATION_CLASS"
+//        ));
+//        PendingIntent pendingIntent1 = PendingIntent.getActivity(
+//                this,
+//                0,
+//                intent1,
+//                FLAG_IMMUTABLE
+//        );
+//        try {
+//            pendingIntent1.send();
+//        } catch (PendingIntent.CanceledException e) {
+//            throw new RuntimeException(e);
+//        }
+
+//        // Launch an Intent and wait for the result using onNewIntent
+//        Intent intent = new Intent();
+//        intent.setComponent(new ComponentName(
+//                "INTENT_TARGET_APPLICATION_PACKAGE",
+//                "INTENT_TARGET_APPLICATION_CLASS"
+//        ));
+//        startActivityForResult(
+//                intent,
+//                0
+//        );
+    }
+
+    // Receive the result from the launched Activity when startActivityForResult is used
+    @Override
+    protected void onNewIntent(@NonNull Intent intent) {
+        super.onNewIntent(intent);
     }
 }
